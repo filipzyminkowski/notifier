@@ -2,9 +2,11 @@
 
 namespace GlobeGroup\NotifierBundle;
 
+use Symfony\Component\HttpKernel\Bundle\Bundle;
+
 /**
  * Class NotifierBundle
  */
-class NotifierBundle
+class NotifierBundle extends Bundle
 {
 }
