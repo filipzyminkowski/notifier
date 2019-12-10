@@ -1,62 +1,32 @@
 {
-    "type": "project",
-    "license": "proprietary",
-    "require": {
-        "php": "^7.2.5",
-        "ext-ctype": "*",
-        "ext-iconv": "*",
-        "symfony/console": "5.0.*",
-        "symfony/dotenv": "5.0.*",
-        "symfony/flex": "^1.3.1",
-        "symfony/framework-bundle": "5.0.*",
-        "symfony/yaml": "5.0.*"
-    },
-    "require-dev": {
-    },
-    "config": {
-        "preferred-install": {
-            "*": "dist"
-        },
-        "sort-packages": true
-    },
-    "autoload": {
-        "psr-4": {
-            "App\\": "src/"
-        }
-    },
-    "autoload-dev": {
-        "psr-4": {
-            "App\\Tests\\": "tests/"
-        }
-    },
-    "replace": {
-        "paragonie/random_compat": "2.*",
-        "symfony/polyfill-ctype": "*",
-        "symfony/polyfill-iconv": "*",
-        "symfony/polyfill-php72": "*",
-        "symfony/polyfill-php71": "*",
-        "symfony/polyfill-php70": "*",
-        "symfony/polyfill-php56": "*"
-    },
-    "scripts": {
-        "auto-scripts": {
-            "cache:clear": "symfony-cmd",
-            "assets:install %PUBLIC_DIR%": "symfony-cmd"
-        },
-        "post-install-cmd": [
-            "@auto-scripts"
-        ],
-        "post-update-cmd": [
-            "@auto-scripts"
-        ]
-    },
-    "conflict": {
-        "symfony/symfony": "*"
-    },
-    "extra": {
-        "symfony": {
-            "allow-contrib": false,
-            "require": "5.0.*"
-        }
+  "name": "globegroup/notifier-bundle",
+  "type": "symfony-bundle",
+  "description": "Globe Group Notifier Bundle",
+  "license": "proprietary",
+  "minimum-stability": "stable",
+  "authors": [
+    {
+      "name": "Bartosz Piotr Pazola",
+      "email": "bartosz.pazola@b2net.pl"
     }
+  ],
+  "require": {
+    "php": "^7.3",
+    "ext-curl": "*",
+    "ext-intl": "*",
+    "ext-json": "*",
+    "symfony/console": "^4.4|^5.0|^5.1@dev",
+    "symfony/http-kernel": "^4.4|^5.0|^5.1@dev"
+  },
+  "require-dev": {
+    "roave/security-advisories": "dev-master"
+  },
+  "config": {
+    "sort-packages": true
+  },
+  "autoload": {
+    "psr-4": {
+      "GlobeGroup\\NotifierBundle\\": ""
+    }
+  }
 }
