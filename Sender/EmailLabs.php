@@ -74,13 +74,16 @@ class EmailLabs
 
     private function prepareSubject(NotifierException $notifierException): string
     {
-        return '[ALERT][' . $this->projectName . '][' . $notifierException->getIdentifier() . '] Wystąpił błąd w ' . $this->projectName;
+        return '[ALERT][' . $this->projectName . '] Wystąpił błąd. Zapoznaj się ze szczegółami.';
     }
 
     private function prepareMessage(NotifierException $notifierException): string
     {
-        $content = '<strong>Kod błędu:</strong> ' . $notifierException->getIdentifier() . '<br>';
+        $content = '<strong>Data pierwszego wystąpienia błędu:</strong> ' . date('Y-m-d H:i:s') . '<br>';
+        $content .= '<strong>Identyfikator błędu:</strong> ' . $notifierException->getIdentifier() . '<br>';
+        $content .= '<strong>Klasa błędu:</strong> ' . get_class($notifierException) . '<br>';
         $content .= '<strong>Treść błędu:</strong> ' . $notifierException->getMessage() . '<br>';
+        $content .= '<strong>Kod błędu:</strong> ' . $notifierException->getCode() . '<br>';
         $content .= '<strong>Plik:</strong> ' . $notifierException->getFile() . '<br>';
         $content .= '<strong>Linia:</strong> ' . $notifierException->getLine() . '<br>';
         $content .= '<strong>Ścieżka błędu:</strong> <br>' . $notifierException->getTraceForMail() . '<br>';

@@ -9,7 +9,12 @@ class NotifierException extends \Exception
 {
     public function getIdentifier(): string
     {
-        return md5($this->getTraceAsString());
+        return substr(md5($this->getIdentifierBase()), -10);
+    }
+
+    private function getIdentifierBase(): string
+    {
+        return $this->getTraceAsString() . $this->getFile() . $this->getLine() . $this->getMessage() . $this->getCode();
     }
 
     public function getTraceForMail(): string

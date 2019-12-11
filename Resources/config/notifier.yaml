@@ -15,3 +15,5 @@ services:
   GlobeGroup\NotifierBundle\Command\ResetExceptionCommand:
     arguments:
       - '@GlobeGroup\NotifierBundle\Service\NotificationSendService'
+    tags:
+      - { name: 'console.command', command: 'notifier:remove-lock' }

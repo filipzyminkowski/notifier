@@ -22,7 +22,11 @@ class NotificationSendService
         $this->SMSLabs = $SMSLabs;
         $this->emailLabs = $emailLabs;
 
-        $this->notifierCacheDir = $cacheDir . DIRECTORY_SEPARATOR . $notifierCacheDir . DIRECTORY_SEPARATOR;
+        $this->notifierCacheDir = $cacheDir . DIRECTORY_SEPARATOR . $notifierCacheDir;
+        if (!file_exists($this->notifierCacheDir) && !mkdir($concurrentDirectory = $this->notifierCacheDir)
+            && !is_dir($concurrentDirectory)) {
+            throw new \RuntimeException(sprintf('Directory "%s" was not created', $concurrentDirectory));
+        }
     }
 
     public function sendException(NotifierException $notifierException): void
@@ -38,7 +42,14 @@ class NotificationSendService
     public function markExceptionSend(NotifierException $notifierException): bool
     {
         $file = $this->notifierCacheDir . DIRECTORY_SEPARATOR . $notifierException->getIdentifier();
-        $data = $notifierException->getTraceAsString();
+        $data = 'Data pierwszego wystąpienia błędu: ' . date('Y-m-d H:i:s') . "\n";
+        $data .= 'Identyfikator błędu: ' . $notifierException->getIdentifier() . "\n";
+        $data .= 'Klasa błędu: ' . get_class($notifierException) . "\n";
+        $data .= 'Treść błędu: ' . $notifierException->getMessage() . "\n";
+        $data .= 'Kod błędu: ' . $notifierException->getCode() . "\n";
+        $data .= 'Plik: ' . $notifierException->getFile() . "\n";
+        $data .= 'Linia: ' . $notifierException->getLine() . "\n";
+        $data .= 'Ścieżka błędu: ' . "\n" . $notifierException->getTraceAsString() . "\n";
 
         if (!file_exists($file)) {
             file_put_contents($file, $data);
