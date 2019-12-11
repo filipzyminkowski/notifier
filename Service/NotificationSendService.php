@@ -49,13 +49,16 @@ class NotificationSendService
         $data .= 'Kod błędu: ' . $notifierException->getCode() . "\n";
         $data .= 'Plik: ' . $notifierException->getFile() . "\n";
         $data .= 'Linia: ' . $notifierException->getLine() . "\n";
-        $data .= 'Ścieżka błędu: ' . "\n" . $notifierException->getTraceAsString() . "\n";
+        $data .= 'Ścieżka błędu: ' . "\n" . $notifierException->getTraceAsString() . "\n" . "\n";
+        $data .= 'Ponowne wystąpienia: ' . "\n";
 
         if (!file_exists($file)) {
             file_put_contents($file, $data);
 
             return true;
         }
+        $extraDate = date('Y-m-d H:i:s') . "\n";
+        file_put_contents($file, $extraDate, FILE_APPEND);
 
         return false;
     }

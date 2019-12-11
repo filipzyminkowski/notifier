@@ -15,11 +15,11 @@
     "ext-curl": "*",
     "ext-intl": "*",
     "ext-json": "*",
-    "symfony/config": "^4.4|^5.0|^5.1@dev",
-    "symfony/console": "^4.4|^5.0|^5.1@dev",
-    "symfony/dependency-injection": "^4.4|^5.0|^5.1@dev",
-    "symfony/dotenv": "^4.4|^5.0|^5.1@dev",
-    "symfony/http-kernel": "^4.4|^5.0|^5.1@dev"
+    "symfony/config": "*",
+    "symfony/console": "*",
+    "symfony/dependency-injection": "*",
+    "symfony/dotenv": "*",
+    "symfony/http-kernel": "*"
   },
   "require-dev": {
     "roave/security-advisories": "dev-master"
@@ -30,6 +30,15 @@
   "autoload": {
     "psr-4": {
       "GlobeGroup\\NotifierBundle\\": ""
+    }
+  },
+  "extra": {
+    "symfony": {
+      "allow-contrib": false,
+      "require": "^4.4|^5.0"
+    },
+    "branch-alias": {
+      "dev-master": "2.0.x-dev"
     }
   }
 }
