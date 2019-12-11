@@ -2,6 +2,7 @@
 
 namespace GlobeGroup\NotifierBundle;
 
+use GlobeGroup\NotifierBundle\Extension\NotifierExtension;
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 
 /**
@@ -9,4 +10,8 @@ use Symfony\Component\HttpKernel\Bundle\Bundle;
  */
 class NotifierBundle extends Bundle
 {
+    public function getContainerExtension()
+    {
+        return new NotifierExtension();
+    }
 }
