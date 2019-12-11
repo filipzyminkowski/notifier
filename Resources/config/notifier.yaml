@@ -6,7 +6,7 @@ services:
       - '@GlobeGroup\NotifierBundle\Sender\SMSLabs'
       - '@GlobeGroup\NotifierBundle\Sender\EmailLabs'
       - '%kernel.cache_dir%'
-      - '%env("NOTIFIER_CACHE_DIR")%'
+      - '%env(NOTIFIER_CACHE_DIR)%'
   GlobeGroup\NotifierBundle\EventListener\ExceptionListener:
     arguments:
       - '@GlobeGroup\NotifierBundle\Service\NotificationSendService'
