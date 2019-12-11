@@ -110,7 +110,8 @@ class EmailLabs
         $this->secretKey = getenv('EMAIL_NOTIFIER_SECRET_KEY');
         $this->projectName = getenv('SMS_NOTIFIER_PROJECT_NAME');
 
-        foreach (getenv('EMAIL_NOTIFIER_RECEIVERS') as $receiver) {
+        $receivers = getenv('EMAIL_NOTIFIER_RECEIVERS');
+        foreach (json_decode($receivers) as $receiver) {
             $this->receivers[$receiver] = '';
         }
     }

@@ -71,14 +71,16 @@ class SMSLabs
     private function prepareMessage(NotifierException $notifierException): string
     {
         return 'W projekcie ' . $this->projectName . ' wystąpił błąd. '
-            . $notifierException->getMessage()
-            . ' Szczegóły zostały wysłane na email.';
+            . 'Komunikat: ' . $notifierException->getMessage() . '.'
+            . 'Identyfikator: ' . $notifierException->getIdentifier()
+            . '. Szczegóły zostały wysłane na email.';
     }
 
     private function getUrlForAction(string $action): string
     {
         return self::BASE_API_URL . $action;
     }
+
     private function validateEnvs(): void
     {
         EnvHelper::validateEnvs([
@@ -95,7 +97,9 @@ class SMSLabs
         $this->appKey = getenv('SMS_NOTIFIER_APP_KEY');
         $this->secretKey = getenv('SMS_NOTIFIER_SECRET_KEY');
         $this->senderId = getenv('SMS_NOTIFIER_SENDER_ID');
-        $this->receivers = getenv('SMS_NOTIFIER_RECEIVERS');
         $this->projectName = getenv('SMS_NOTIFIER_PROJECT_NAME');
+
+        $receivers = getenv('SMS_NOTIFIER_RECEIVERS');
+        $this->receivers = json_decode($receivers);
     }
 }
