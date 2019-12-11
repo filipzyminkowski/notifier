@@ -15,8 +15,6 @@ class NotificationSendService
 
     private $emailLabs;
 
-    private $cacheDir;
-
     private $notifierCacheDir;
 
     public function __construct(SMSLabs $SMSLabs, EmailLabs $emailLabs, string $cacheDir, string $notifierCacheDir)
@@ -24,7 +22,6 @@ class NotificationSendService
         $this->SMSLabs = $SMSLabs;
         $this->emailLabs = $emailLabs;
 
-        $this->cacheDir = $cacheDir;
         $this->notifierCacheDir = $cacheDir . DIRECTORY_SEPARATOR . $notifierCacheDir . DIRECTORY_SEPARATOR;
     }
 
@@ -40,7 +37,7 @@ class NotificationSendService
 
     public function markExceptionSend(NotifierException $notifierException): bool
     {
-        $file = $this->cacheDir . $notifierException->getIdentifier();
+        $file = $this->notifierCacheDir . DIRECTORY_SEPARATOR . $notifierException->getIdentifier();
         $data = $notifierException->getTraceAsString();
 
         if (!file_exists($file)) {
@@ -54,7 +51,7 @@ class NotificationSendService
 
     public function checkExceptionSend(NotifierException $notifierException): bool
     {
-        $file = $this->notifierCacheDir . $notifierException->getIdentifier();
+        $file = $this->notifierCacheDir . DIRECTORY_SEPARATOR . $notifierException->getIdentifier();
 
         if (!file_exists($file)) {
             return false;
@@ -65,7 +62,7 @@ class NotificationSendService
 
     public function uncheckExceptionSend(string $identifier): bool
     {
-        $file = $this->notifierCacheDir . $identifier;
+        $file = $this->notifierCacheDir . DIRECTORY_SEPARATOR . $identifier;
 
         if (!file_exists($file)) {
             return false;

@@ -14,6 +14,6 @@ class NotifierException extends \Exception
 
     public function getTraceForMail(): string
     {
-        return str_replace(' #', '<br>#', $this->getTraceAsString());
+        return str_replace("\n", '<br>', $this->getTraceAsString());
     }
 }

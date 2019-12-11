@@ -70,10 +70,10 @@ class SMSLabs
 
     private function prepareMessage(NotifierException $notifierException): string
     {
-        return 'W projekcie ' . $this->projectName . ' wystąpił błąd. '
-            . 'Komunikat: ' . $notifierException->getMessage() . '.'
-            . 'Identyfikator: ' . $notifierException->getIdentifier()
-            . '. Szczegóły zostały wysłane na email.';
+        return 'W projekcie "' . $this->projectName . '" wystąpił błąd. '
+            . 'Komunikat: "' . $notifierException->getMessage() . '". '
+            . 'Identyfikator: "' . $notifierException->getIdentifier() . '". '
+            . 'Szczegóły zostały wysłane na email.';
     }
 
     private function getUrlForAction(string $action): string

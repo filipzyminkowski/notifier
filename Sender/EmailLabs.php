@@ -74,7 +74,7 @@ class EmailLabs
 
     private function prepareSubject(NotifierException $notifierException): string
     {
-        return '[ALERT][' . $notifierException->getIdentifier() . '] Wystąpił błąd w ' . $this->projectName;
+        return '[ALERT][' . $this->projectName . '][' . $notifierException->getIdentifier() . '] Wystąpił błąd w ' . $this->projectName;
     }
 
     private function prepareMessage(NotifierException $notifierException): string
