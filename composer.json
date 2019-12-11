@@ -17,7 +17,7 @@
     "ext-json": "*",
     "symfony/config": "^4.4|^5.0|^5.1@dev",
     "symfony/console": "^4.4|^5.0|^5.1@dev",
-    "symfony/dependency-injection": "^5.0",
+    "symfony/dependency-injection": "^4.4|^5.0|^5.1@dev",
     "symfony/dotenv": "^4.4|^5.0|^5.1@dev",
     "symfony/http-kernel": "^4.4|^5.0|^5.1@dev"
   },
