@@ -2,7 +2,7 @@
   "name": "globegroup/notifier-bundle",
   "type": "symfony-bundle",
   "description": "Globe Group Notifier Bundle",
-  "license": "proprietary",
+  "license": "MIT",
   "minimum-stability": "stable",
   "authors": [
     {
