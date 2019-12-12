@@ -1,4 +1,4 @@
-# Notifier Bundle
+# Notifier Bundle by Globe Group
 
 Notifier Bundle for the Symfony Framework.
 
